@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Retirement Corpus &amp; SIP Gap Calculator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef6ff', 100: '#d9ecff', 200: '#bcdcff', 300: '#8ec5ff',
+              400: '#59a4ff', 500: '#3182ff', 600: '#1a63f5', 700: '#144fe1',
+              800: '#1741b6', 900: '#193b8f'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="min-h-screen bg-slate-100 font-sans text-slate-800 antialiased">
+
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-brand-700 via-brand-600 to-brand-500 text-white shadow-lg">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-3">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white/15 backdrop-blur">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <div>
+          <h1 class="text-xl font-extrabold tracking-tight sm:text-2xl">Retirement Corpus &amp; SIP Gap Calculator</h1>
+          <p class="text-sm text-brand-100">Plan the savings you need for a comfortable, worry-free retirement.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-12">
+
+      <!-- ===================== INPUTS (Left / Top) ===================== -->
+      <section class="lg:col-span-5">
+        <div class="card rounded-2xl bg-white p-6 shadow-sm">
+          <h2 class="mb-1 text-lg font-bold text-slate-900">Your Details</h2>
+          <p class="mb-6 text-sm text-slate-500">Adjust the values below — your plan updates instantly.</p>
+
+          <!-- Ages -->
+          <div class="grid grid-cols-1 gap-5 sm:grid-cols-3">
+            <div>
+              <label for="presentAge" class="mb-1 block text-sm font-medium text-slate-700">Your Age Today</label>
+              <input id="presentAge" type="number" min="18" max="90" value="45"
+                class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm shadow-sm focus:border-brand-500 focus:ring-2 focus:ring-brand-200" />
+            </div>
+            <div>
+              <label for="retirementAge" class="mb-1 block text-sm font-medium text-slate-700">Retirement Age</label>
+              <input id="retirementAge" type="number" min="19" max="95" value="50"
+                class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm shadow-sm focus:border-brand-500 focus:ring-2 focus:ring-brand-200" />
+            </div>
+            <div>
+              <label for="lifeExpectancy" class="mb-1 block text-sm font-medium text-slate-700">Live Until</label>
+              <input id="lifeExpectancy" type="number" min="20" max="110" value="80"
+                class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm shadow-sm focus:border-brand-500 focus:ring-2 focus:ring-brand-200" />
+            </div>
+          </div>
+
+          <hr class="my-6 border-slate-100" />
+
+          <!-- Money inputs -->
+          <div class="space-y-5">
+            <div>
+              <label for="currentExpenses" class="mb-1 block text-sm font-medium text-slate-700">Current Monthly Spending</label>
+              <div class="relative">
+                <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">₹</span>
+                <input id="currentExpenses" type="number" min="0" step="1000" value="30000"
+                  class="w-full rounded-lg border border-slate-300 py-2 pl-8 pr-3 text-sm shadow-sm focus:border-brand-500 focus:ring-2 focus:ring-brand-200" />
+              </div>
+            </div>
+
+            <div>
+              <label for="desiredExpenses" class="mb-1 block text-sm font-medium text-slate-700">Desired Monthly Spending in Retirement <span class="text-slate-400">(today's money)</span></label>
+              <div class="relative">
+                <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">₹</span>
+                <input id="desiredExpenses" type="number" min="0" step="1000" value="50000"
+                  class="w-full rounded-lg border border-slate-300 py-2 pl-8 pr-3 text-sm shadow-sm focus:border-brand-500 focus:ring-2 focus:ring-brand-200" />
+              </div>
+            </div>
+
+            <div>
+              <label for="existingCorpus" class="mb-1 block text-sm font-medium text-slate-700">Money Already Invested (Mutual Funds)</label>
+              <div class="relative">
+                <span class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">₹</span>
+                <input id="existingCorpus" type="number" min="0" step="10000" value="5000000"
+                  class="w-full rounded-lg border border-slate-300 py-2 pl-8 pr-3 text-sm shadow-sm focus:border-brand-500 focus:ring-2 focus:ring-brand-200" />
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-6 border-slate-100" />
+
+          <!-- Sliders -->
+          <div class="space-y-6">
+            <div>
+              <div class="mb-2 flex items-center justify-between">
+                <label for="preReturn" class="text-sm font-medium text-slate-700">Growth Before Retirement</label>
+                <span id="preReturnVal" class="rounded-md bg-brand-50 px-2 py-0.5 text-sm font-semibold text-brand-700">12%</span>
+              </div>
+              <input id="preReturn" type="range" min="1" max="20" step="0.5" value="12" class="range-slider" />
+            </div>
+
+            <div>
+              <div class="mb-2 flex items-center justify-between">
+                <label for="postReturn" class="text-sm font-medium text-slate-700">Growth During Retirement</label>
+                <span id="postReturnVal" class="rounded-md bg-brand-50 px-2 py-0.5 text-sm font-semibold text-brand-700">8%</span>
+              </div>
+              <input id="postReturn" type="range" min="1" max="15" step="0.5" value="8" class="range-slider" />
+            </div>
+
+            <div>
+              <div class="mb-2 flex items-center justify-between">
+                <label for="inflation" class="text-sm font-medium text-slate-700">Expected Inflation</label>
+                <span id="inflationVal" class="rounded-md bg-brand-50 px-2 py-0.5 text-sm font-semibold text-brand-700">6%</span>
+              </div>
+              <input id="inflation" type="range" min="1" max="12" step="0.5" value="6" class="range-slider" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== RESULTS (Right / Bottom) ===================== -->
+      <section class="lg:col-span-7">
+        <!-- KPI cards -->
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <div class="kpi-card kpi-primary rounded-2xl bg-gradient-to-br from-indigo-500 via-blue-600 to-violet-700 p-5 text-white shadow-lg">
+            <div class="flex items-center justify-between">
+              <p class="text-xs font-semibold uppercase tracking-wide text-blue-100">Total You Need</p>
+              <span id="kpiScenarioTag" class="rounded-full bg-white/20 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide backdrop-blur">Target</span>
+            </div>
+            <p id="kpiTargetCorpus" class="mt-2 text-2xl font-extrabold leading-tight drop-shadow">₹0</p>
+            <p class="mt-1 text-xs text-blue-100">Corpus required at retirement</p>
+          </div>
+          <div class="kpi-card kpi-blue rounded-2xl bg-gradient-to-br from-sky-50 to-white p-5 shadow-md">
+            <p class="text-xs font-semibold uppercase tracking-wide text-sky-500">Your Savings Grow To</p>
+            <p id="kpiExistingFV" class="mt-2 text-2xl font-extrabold leading-tight text-sky-700">₹0</p>
+            <p class="mt-1 text-xs text-slate-400">Existing funds at retirement</p>
+          </div>
+          <div class="kpi-card kpi-green rounded-2xl bg-gradient-to-br from-emerald-50 to-white p-5 shadow-md">
+            <p class="text-xs font-semibold uppercase tracking-wide text-emerald-500">Monthly SIP Needed</p>
+            <p id="kpiSip" class="mt-2 text-2xl font-extrabold leading-tight text-emerald-600">₹0</p>
+            <p class="mt-1 text-xs text-slate-400">To bridge the gap</p>
+          </div>
+        </div>
+
+        <!-- Insight banner -->
+        <div id="insightBanner" class="mt-4 rounded-2xl border border-brand-100 bg-brand-50 p-5">
+          <p id="insightText" class="text-sm leading-relaxed text-slate-700"></p>
+        </div>
+
+        <!-- Progress: savings vs target -->
+        <div class="card rounded-2xl bg-white p-6 shadow-sm">
+          <div class="mb-2 flex items-center justify-between">
+            <h3 class="text-sm font-semibold text-slate-800">How far your current savings take you</h3>
+            <span id="coveragePct" class="text-sm font-bold text-brand-700">0%</span>
+          </div>
+          <div class="h-3 w-full overflow-hidden rounded-full bg-slate-100">
+            <div id="coverageBar" class="h-full rounded-full bg-gradient-to-r from-emerald-400 via-teal-500 to-cyan-500 transition-all duration-500" style="width:0%"></div>
+          </div>
+          <div class="mt-2 flex justify-between text-xs text-slate-400">
+            <span>Existing savings</span>
+            <span>Total target</span>
+          </div>
+        </div>
+
+        <!-- Timeline summary -->
+        <div class="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <div class="stat-tile rounded-xl bg-white p-4 text-center shadow-sm">
+            <p id="statYearsToRetire" class="text-xl font-bold text-indigo-600">0</p>
+            <p class="text-xs text-slate-500">Years to retire</p>
+          </div>
+          <div class="stat-tile rounded-xl bg-white p-4 text-center shadow-sm">
+            <p id="statRetireDuration" class="text-xl font-bold text-fuchsia-600">0</p>
+            <p class="text-xs text-slate-500">Years in retirement</p>
+          </div>
+          <div class="stat-tile rounded-xl bg-white p-4 text-center shadow-sm">
+            <p id="statFirstMonthExpense" class="text-xl font-bold text-sky-600">₹0</p>
+            <p class="text-xs text-slate-500">1st month expense</p>
+          </div>
+          <div class="stat-tile rounded-xl bg-white p-4 text-center shadow-sm">
+            <p id="statCorpusGap" class="text-xl font-bold text-rose-600">₹0</p>
+            <p class="text-xs text-slate-500">Shortfall to fund</p>
+          </div>
+        </div>
+
+        <!-- Scenario comparison -->
+        <div class="card rounded-2xl bg-white p-6 shadow-sm">
+          <h3 class="mb-1 text-base font-bold text-slate-900">Compare Two Lifestyles</h3>
+          <p class="mb-5 text-sm text-slate-500">See how your target retirement lifestyle stacks up against simply keeping today's spending.</p>
+
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <!-- Scenario A -->
+            <div id="scenarioA" class="scenario-card scenario-present rounded-xl p-5">
+              <div class="mb-3 flex items-center gap-2">
+                <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-teal-500 text-xs font-bold text-white">A</span>
+                <h4 class="font-semibold text-teal-700">Present Lifestyle</h4>
+              </div>
+              <p class="mb-4 text-xs text-slate-500">Based on <span id="scnAMonthly">₹30,000</span> / month (today)</p>
+              <dl class="space-y-3 text-sm">
+                <div class="flex justify-between"><dt class="text-slate-500">Corpus needed</dt><dd id="scnACorpus" class="font-semibold text-teal-700">₹0</dd></div>
+                <div class="flex justify-between"><dt class="text-slate-500">Monthly SIP</dt><dd id="scnASip" class="font-semibold text-teal-700">₹0</dd></div>
+                <div class="flex justify-between"><dt class="text-slate-500">Expense at retirement</dt><dd id="scnAExpense" class="font-semibold text-teal-700">₹0</dd></div>
+              </dl>
+            </div>
+
+            <!-- Scenario B -->
+            <div id="scenarioB" class="scenario-card scenario-target rounded-xl p-5">
+              <div class="mb-3 flex items-center gap-2">
+                <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 text-xs font-bold text-white">B</span>
+                <h4 class="font-semibold text-violet-700">Target Lifestyle</h4>
+              </div>
+              <p class="mb-4 text-xs text-slate-500">Based on <span id="scnBMonthly">₹50,000</span> / month (today)</p>
+              <dl class="space-y-3 text-sm">
+                <div class="flex justify-between"><dt class="text-slate-500">Corpus needed</dt><dd id="scnBCorpus" class="font-semibold text-violet-700">₹0</dd></div>
+                <div class="flex justify-between"><dt class="text-slate-500">Monthly SIP</dt><dd id="scnBSip" class="font-semibold text-violet-700">₹0</dd></div>
+                <div class="flex justify-between"><dt class="text-slate-500">Expense at retirement</dt><dd id="scnBExpense" class="font-semibold text-violet-700">₹0</dd></div>
+              </dl>
+            </div>
+          </div>
+
+          <p id="scenarioDiff" class="mt-5 rounded-lg bg-amber-50 px-4 py-3 text-sm text-amber-800"></p>
+        </div>
+
+        <p class="mt-4 text-center text-xs text-slate-400">
+          Estimates are for guidance only and assume returns stay constant. Actual results will vary.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
