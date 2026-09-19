@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ &amp; Guidelines — Retirement Corpus &amp; SIP Gap Calculator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef6ff', 100: '#d9ecff', 200: '#bcdcff', 300: '#8ec5ff',
+              400: '#59a4ff', 500: '#3182ff', 600: '#1a63f5', 700: '#144fe1',
+              800: '#1741b6', 900: '#193b8f'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="min-h-screen bg-slate-100 font-sans text-slate-800 antialiased">
+
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-brand-700 via-brand-600 to-brand-500 text-white shadow-lg">
+    <div class="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-3">
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white/15 backdrop-blur">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <div>
+          <h1 class="text-xl font-extrabold tracking-tight sm:text-2xl">Retirement Corpus &amp; SIP Gap Calculator</h1>
+          <p class="text-sm text-brand-100">FAQ &amp; guidelines for getting the most accurate plan.</p>
+        </div>
+      </div>
+    </div>
+    <nav class="mt-5 border-t border-white/10">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex gap-1 py-2">
+          <a href="index.html" class="nav-link">Calculator</a>
+          <a href="faq.html" class="nav-link active">FAQ &amp; Guidelines</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+
+    <!-- ===================== FAQ & GUIDELINES ===================== -->
+    <section class="mb-6">
+      <div class="card rounded-2xl bg-white p-6 shadow-sm">
+        <h2 class="mb-1 text-lg font-bold text-slate-900">Frequently Asked Questions &amp; Guidelines</h2>
+        <p class="mb-6 text-sm text-slate-500">Tap a question to expand the answer.</p>
+
+        <div id="faqList" class="space-y-3">
+
+          <div class="faq-item rounded-xl">
+            <button type="button" class="faq-trigger" aria-expanded="false">
+              <span>What should I include in Current Monthly Spending?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-panel">
+              <div class="faq-panel-inner">
+                <p>Include your actual regular living expenses — rent, food, utilities, transportation, household expenses, and other recurring personal costs.</p>
+                <p>Don't use an unrealistically low number. Your retirement calculation should reflect the lifestyle you actually live today.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item rounded-xl">
+            <button type="button" class="faq-trigger" aria-expanded="false">
+              <span>What should I enter as Desired Monthly Spending in Retirement?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-panel">
+              <div class="faq-panel-inner">
+                <p>Enter the monthly amount you believe you'll need to maintain your desired retirement lifestyle, expressed in today's money. This is the foundation of your retirement target.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item rounded-xl">
+            <button type="button" class="faq-trigger" aria-expanded="false">
+              <span>Should I include health or emergency funds?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-panel">
+              <div class="faq-panel-inner">
+                <p>No. Keep your health/medical fund and emergency fund separate from your retirement corpus. They're safety reserves and shouldn't be counted as money available for regular retirement living expenses.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item rounded-xl">
+            <button type="button" class="faq-trigger" aria-expanded="false">
+              <span>What should I enter under Money Already Invested?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-panel">
+              <div class="faq-panel-inner">
+                <p>Enter only the money specifically invested for your retirement. Don't include investments reserved for children's education, marriage, property, business, emergency needs, or other financial goals.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item rounded-xl">
+            <button type="button" class="faq-trigger" aria-expanded="false">
+              <span>Should I include my parents' expenses?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-panel">
+              <div class="faq-panel-inner">
+                <p>If you expect to financially support your parents during retirement, you can include their regular expected living expenses in your calculation. If this doesn't apply to you, leave it out.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item rounded-xl">
+            <button type="button" class="faq-trigger" aria-expanded="false">
+              <span>What is a nice-to-have or untouched corpus?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-panel">
+              <div class="faq-panel-inner">
+                <p>If you have additional investments you don't plan to use for normal retirement expenses, keep them outside the core calculation. This can act as a financial cushion and give you extra flexibility later.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item rounded-xl">
+            <button type="button" class="faq-trigger" aria-expanded="false">
+              <span>Does the target corpus include travel and luxury expenses?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-panel">
+              <div class="faq-panel-inner">
+                <p>Not automatically. The target is primarily designed to fund your planned regular retirement lifestyle. Luxury purchases, expensive travel, major purchases, and other discretionary goals should be treated as separate financial goals.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item rounded-xl">
+            <button type="button" class="faq-trigger" aria-expanded="false">
+              <span>What happens if my savings don't reach the target?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-panel">
+              <div class="faq-panel-inner">
+                <p>A shortfall means your current plan may not fully support the lifestyle you've selected. You may need to consider:</p>
+                <ul>
+                  <li>Increasing your monthly SIP</li>
+                  <li>Saving for a longer period</li>
+                  <li>Retiring later</li>
+                  <li>Reducing planned retirement expenses</li>
+                  <li>Creating additional income</li>
+                </ul>
+                <p>Otherwise, you may eventually need to continue working or return to work.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item rounded-xl">
+            <button type="button" class="faq-trigger" aria-expanded="false">
+              <span>Why does inflation matter?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-panel">
+              <div class="faq-panel-inner">
+                <p>The cost of living generally increases over time. For example, ₹50,000 of monthly spending today will require a higher amount in the future if prices rise. The calculator adjusts your retirement expenses for the inflation rate you set.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item rounded-xl">
+            <button type="button" class="faq-trigger" aria-expanded="false">
+              <span>Are the calculator results guaranteed?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-panel">
+              <div class="faq-panel-inner">
+                <p>No. The results are estimates based on the assumptions you enter, including investment growth, inflation, retirement period, and spending. Actual investment returns, inflation, expenses, and life expectancy can differ. Use the result as a planning estimate, not a guarantee.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <p class="mt-5 rounded-lg bg-amber-50 px-4 py-3 text-sm text-amber-800">
+          <span class="font-semibold">Important guideline:</span> your retirement target should match the lifestyle you actually want to maintain. If the final corpus is insufficient for that lifestyle, the gap doesn't disappear — it has to be addressed through more savings, more time, lower expenses, additional income, or a combination of these.
+        </p>
+      </div>
+    </section>
+
+    <div class="text-center">
+      <a href="index.html" class="inline-flex items-center gap-1 rounded-full bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Back to the Calculator
+      </a>
+    </div>
+
+  </main>
+
+  <script src="faq.js"></script>
+</body>
+</html>
